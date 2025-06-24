@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <title>مبدع البرمجة – العد التنازلي للبث</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      background: linear-gradient(135deg, #111, #222);
+      color: #fff;
+      font-family: 'Cairo', sans-serif;
+      text-align: center;
+      padding: 30px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    h1 {
+      font-size: 2.4em;
+      color: #00ffd5;
+      margin-bottom: 15px;
+      animation: pulse 1.8s infinite;
+    }
+
+    p {
+      font-size: 1.1em;
+      color: #ccc;
+      margin-bottom: 25px;
+    }
+
+    #timer {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      font-size: 1.6em;
+      margin-bottom: 30px;
+    }
+
+    .box {
+      background: #292929;
+      padding: 12px 18px;
+      border-radius: 12px;
+      min-width: 75px;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .label {
+      font-size: 0.65em;
+      color: #aaa;
+      margin-top: 5px;
+    }
+
+    a.btn {
+      background: #00ffd5;
+      color: #000;
+      padding: 14px 28px;
+      font-size: 1em;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: 0.3s;
+      margin-top: 20px;
+      display: inline-block;
+      animation: bounce 2s infinite;
+    }
+
+    a.btn:hover {
+      background: #00e0bd;
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #888;
+    }
+
+    .highlight {
+      color: #ffdb70;
+      font-weight: bold;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.8em; }
+      #timer { font-size: 1.4em; }
+      a.btn { font-size: 0.9em; padding: 12px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>العد التنازلي لبث <span class="highlight">مبدع البرمجة</span></h1>
+  <p>أول لايف ضخم بعد الوصول لـ <strong>5000 متابع</strong>… تابعنا وخليك جاهز!</p>
+
+  <div id="timer">
+    <div class="box">
+      <div id="days">--</div>
+      <div class="label">يوم</div>
+    </div>
+    <div class="box">
+      <div id="hours">--</div>
+      <div class="label">ساعة</div>
+    </div>
+    <div class="box">
+      <div id="minutes">--</div>
+      <div class="label">دقيقة</div>
+    </div>
+    <div class="box">
+      <div id="seconds">--</div>
+      <div class="label">ثانية</div>
+    </div>
+  </div>
+
+  <a class="btn" href="https://www.facebook.com/KimoTechnologyOfficial" target="_blank">شاهد البث المباشر</a>
+
+  <div class="footer">#مبدع_البرمجة #لايف_البرمجة #تعلم_برمجة #بث_مباشر</div>
+
+  <script>
+    const targetDate = new Date("2025-07-01T20:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        document.getElementById("timer").innerHTML = "🚨 البث بدأ الآن! اضغط الزر!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
